@@ -17,6 +17,9 @@
 * 中の仕組みについても解説
 
 ### このトークで得られること
+* Cloudflare Workersの概要がわかる
+* Cloudflare WorkersでPythonを使う上で必要な設定、仕様のクセがわかる
+* Cloudflare WorkersでPythonが動く仕組みを知ることで、仕様のクセがある理由を理解できる
 
 ### トークの構成
 * Cloudflare Workersとは
