@@ -31,7 +31,13 @@
 ### Cloudflare Workersの概要
 * サーバーレスアプリケーションをデプロイできるプラットフォーム
 * 世界中にあるサーバーにコードをデプロイし、クライアントは物理的に近いサーバーからレスポンスを受け取る
+* コールドスタートが排除されている
 * 類似サービスにAWS Lamnda@Edgeがある
+
+### コールドスタートについて補足
+
+* しばらく実行されていない関数を実行しなければならない状況をコールドスタートという
+* Cloudflare Workersはコールドスタートが排除されているため、高速なレスポンスが期待できる
 
 ### Cloudflare WorkersとAWS Lambda@Edgeの違い
 | Cloudflare Workers | AWS Lambda@Edge |
