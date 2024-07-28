@@ -39,6 +39,7 @@
 | 無料枠がある | 無料枠がない |
 | デプロイが1分程度で完了 | TODO 要調査 |
 | JavaScriptはChrome V8エンジンで直接動作 | Node.jsで動作 |
+
 ## Cloudflare WorkersでPythonを使う方法
 
 ## Cloudflare WorkersでPythonが動く仕組み
