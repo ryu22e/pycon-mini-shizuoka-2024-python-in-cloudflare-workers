@@ -28,6 +28,17 @@
 
 ## Cloudflare Workersとは
 
+### Cloudflare Workersの概要
+* サーバーレスアプリケーションをデプロイできるプラットフォーム
+* 世界中にあるサーバーにコードをデプロイし、クライアントは物理的に近いサーバーからレスポンスを受け取る
+* 類似サービスにAWS Lamnda@Edgeがある
+
+### Cloudflare WorkersとAWS Lambda@Edgeの違い
+| Cloudflare Workers | AWS Lambda@Edge |
+| --- | --- |
+| 無料枠がある | 無料枠がない |
+| デプロイが1分程度で完了 | TODO 要調査 |
+| JavaScriptはChrome V8エンジンで直接動作 | Node.jsで動作 |
 ## Cloudflare WorkersでPythonを使う方法
 
 ## Cloudflare WorkersでPythonが動く仕組み
