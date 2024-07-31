@@ -38,18 +38,10 @@
 * しばらく実行されていない関数を実行しなければならない状況をコールドスタートという
 * Cloudflare Workersはコールドスタートが排除されているため、高速なレスポンスが期待できる
 
-### Cloudflare WorkersとAWS Lambda@Edgeの違い
-| Cloudflare Workers | AWS Lambda@Edge |
-| --- | --- |
-| 無料枠がある | 無料枠がない |
-| デプロイが1分程度で完了 | TODO 要調査 |
-| JavaScriptはChrome V8エンジンで直接動作 | JavaScriptはNode.jsで動作 |
-
-### Chrome V8について補足
-* Chrome V8とは、JavaScriptコードの実行エンジン
-* Node.jsはChrome V8上に構築されている
-* Node.jsはしばらく実行されていない関数を実行する際にコールドスタートが発生する
-* Chrome V8上で実行することで、関数は5 ミリ秒以内に実行される
+### Cloudflare WorkersがAWS Lambda@Edgeよりも優れている点
+* 無料枠がある
+* デプロイが高速（1分程度で完了）
+* JavaScriptを高速に実行するためのチューニングがされている
 
 ## Cloudflare WorkersでPythonを使う方法
 
