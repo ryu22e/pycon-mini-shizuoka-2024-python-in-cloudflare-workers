@@ -46,6 +46,10 @@
 | JavaScriptはChrome V8エンジンで直接動作 | JavaScriptはNode.jsで動作 |
 
 ### Chrome V8について補足
+* Chrome V8とは、JavaScriptコードの実行エンジン
+* Node.jsはChrome V8上に構築されている
+* Node.jsはしばらく実行されていない関数を実行する際にコールドスタートが発生する
+* Chrome V8上で実行することで、関数は5 ミリ秒以内に実行される
 
 ## Cloudflare WorkersでPythonを使う方法
 
