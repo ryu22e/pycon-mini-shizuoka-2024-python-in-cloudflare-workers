@@ -44,5 +44,17 @@
 * JavaScriptを高速に実行するためのチューニングがされている
 
 ## Cloudflare WorkersでPythonを使う方法
+### Cloudflare Workersを簡単に試す方法（デモ）
+公式のサンプルコードを使うと簡単に試すことができる。
+```{revealjs-code-block} shell
+
+% git clone https://github.com/cloudflare/python-workers-examples
+% cd python-workers-examples/01-hello
+% npx wrangler@latest dev
+```
+
+### Wranglerとは何か
+* Cloudflare Workersの開発者ツール
+* ローカルサーバーの立ち上げ、デプロイ、環境変数の設定など、Workersプロジェクトの管理を行う
 
 ## Cloudflare WorkersでPythonが動く仕組み
