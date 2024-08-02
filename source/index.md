@@ -83,4 +83,11 @@ compatibility_flags = ["python_workers"]
 compatibility_date = "2024-03-29"
 ```
 
+### wrangler.tomlの各項目について説明
+
+* name: Workersプロジェクト名
+* main: エントリーポイント
+* compatibility_flags: 互換性フラグ
+* compatibility_date: 互換性日付
+
 ## Cloudflare WorkersでPythonが動く仕組み
