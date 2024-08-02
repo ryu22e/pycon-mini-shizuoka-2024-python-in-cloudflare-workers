@@ -57,4 +57,23 @@
 * Cloudflare Workersの開発者ツール
 * ローカルサーバーの立ち上げ、デプロイ、環境変数の設定など、Workersプロジェクトの管理を行う
 
+### src/entry.pyの中身
+
+```{revealjs-code-block} python
+from js import Response  # ←これは何？
+
+async def on_fetch(request, env):
+    return Response.new("Hello world!")
+```
+
+### wrangler.tomlの中身
+
+```{revealjs-code-block} toml
+
+name = "hello-python"
+main = "src/entry.py"
+compatibility_flags = ["python_workers"]
+compatibility_date = "2024-03-29"
+```
+
 ## Cloudflare WorkersでPythonが動く仕組み
