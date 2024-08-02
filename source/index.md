@@ -66,8 +66,15 @@ async def on_fetch(request, env):
     return Response.new("Hello world!")
 ```
 
-### wrangler.tomlの中身
+### jsモジュールとは何か
+* PythonからJavaScript APIを呼び出すためのモジュール
+* `Headers`や`fetch`なども呼べる
 
+### Q. PythonなのになぜJavaScriptのAPIを使うの？
+
+この疑問に答えるには、Cloudflare WorkersでPythonが動く仕組みを知る必要があるので、一旦置いておいてください。
+
+### wrangler.tomlの中身
 ```{revealjs-code-block} toml
 
 name = "hello-python"
