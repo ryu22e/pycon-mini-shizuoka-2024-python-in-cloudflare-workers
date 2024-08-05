@@ -84,10 +84,46 @@ compatibility_date = "2024-03-29"
 ```
 
 ### wrangler.tomlの各項目について説明
-
 * name: Workersプロジェクト名
 * main: エントリーポイント
 * compatibility_flags: 互換性フラグ
 * compatibility_date: 互換性日付
+
+### built-in packagesとは
+* Cloudflare Workersで提供されているPythonパッケージ
+* requirements.txtにパッケージ名を記述することで利用できる
+
+### requirements.txtの記述例
+```{revealjs-code-block} text
+
+fastapi
+langchain
+```
+
+### Q. requirements.txtって普通こう書かない？
+```{revealjs-code-block} text
+
+# パッケージ名の右側にバージョンを指定する
+fastapi==0.112.0
+langchain<1.0.0,>=0.1.0
+```
+
+### A. Cloudflare Workersでは別の方法でバージョンを指定する
+wrangler.tomlの以下項目によってパッケージのバージョンが決まる。
+
+* compatibility_flags: 互換性フラグ
+* compatibility_date: 互換性日付
+
+### Cloudflare Workersを簡単に試す方法（デモ）
+公式のサンプルコードを使うと簡単に試すことができる。
+```{revealjs-code-block} shell
+
+% git clone https://github.com/cloudflare/python-workers-examples
+% cd python-workers-examples/03-fastapi
+% npx wrangler@latest dev
+```
+
+### 残念なお知らせ
+この発表時点では、built-in packagesは本番環境にデプロイできない。
 
 ## Cloudflare WorkersでPythonが動く仕組み
