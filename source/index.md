@@ -114,6 +114,12 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 * compatibility_flags: 互換性フラグ
 * compatibility_date: 互換性日付
 
+### サポートするパッケージとバージョンの一覧
+
+以下の公式ドキュメントで確認できる。
+
+<https://developers.cloudflare.com/workers/languages/python/packages/#supported-packages>
+
 ### Cloudflare Workersを簡単に試す方法（デモ）
 公式のサンプルコードを使うと簡単に試すことができる。
 ```{revealjs-code-block} shell
