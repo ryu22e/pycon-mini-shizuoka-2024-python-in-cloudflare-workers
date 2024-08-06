@@ -133,3 +133,11 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 この発表時点では、built-in packagesは本番環境にデプロイできない。
 
 ## Cloudflare WorkersでPythonが動く仕組み
+### Q. WASMをサポートしないPythonがなぜ動くの？
+* Cloudflare WorkersはWebAssembly（WASM）をサポートしている
+* しかし、PythonにはコードをWASMにコンパイルする機能がない
+* では、なぜPythonが動くのか？
+
+### A.PyodideがPythonコードを解釈して実行している
+* [Pyodide](https://pyodide.org/en/stable/)とは、CPythonのWASM実装
+* Cloudflare Workersのランタイムである[workerd](https://github.com/cloudflare/workerd)には、Pyodideが組み込まれている
