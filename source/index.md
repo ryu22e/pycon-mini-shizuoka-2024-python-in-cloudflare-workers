@@ -134,10 +134,16 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 
 ## Cloudflare WorkersでPythonが動く仕組み
 ### Q. WASMをサポートしないPythonがなぜ動くの？
-* Cloudflare WorkersはWebAssembly（WASM）をサポートしている
+* Cloudflare WorkersはJavaScript(TypeScript)またはWebAssembly（WASM）をサポートしている
 * しかし、PythonにはコードをWASMにコンパイルする機能がない
 * では、なぜPythonが動くのか？
 
 ### A.PyodideがPythonコードを解釈して実行している
 * [Pyodide](https://pyodide.org/en/stable/)とは、CPythonのWASM実装
 * Cloudflare Workersのランタイムである[workerd](https://github.com/cloudflare/workerd)には、Pyodideが組み込まれている
+
+### workerdの実装について
+* 現状ではJavaScript(TypeScript)またはWASMのランタイムとして作られている
+* これにPythonのを加えると、1から実装することになって大変
+* そこで、FFI（Foreign Function Interface）を提供して、PythonからJavaScriptのAPIを呼べるようにした
+* 前述したjsモジュールを通してJavaScriptのAPIを呼び出せる
