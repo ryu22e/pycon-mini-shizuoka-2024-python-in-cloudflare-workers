@@ -148,5 +148,5 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 * そこで、FFI（Foreign Function Interface）を提供して、PythonからJavaScriptのAPIを呼べるようにした
 * 前述したjsモジュールを通してJavaScriptのAPIを呼び出せる
 
-### 以下のブログも参照
+### 以下の公式ブログも参照
 [Bringing Python to Workers using Pyodide and WebAssembly](https://blog.cloudflare.com/python-workers)
