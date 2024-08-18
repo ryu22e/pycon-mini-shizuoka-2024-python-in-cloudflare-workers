@@ -48,7 +48,7 @@
 公式のサンプルコードを使うと簡単に試すことができる。
 ```{revealjs-code-block} shell
 
-% git clone https://github.com/cloudflare/python-workers-examples
+% git clone https://github.com/cloudflare/python-workers-examples.git
 % cd python-workers-examples/01-hello
 % npx wrangler@latest dev
 ```
@@ -93,7 +93,7 @@ compatibility_date = "2024-03-29"
 以下のサンプルコードを参照。
 
 ```{revealjs-code-block} shell
-$ git clone https://github.com/ryu22e/python-workers-examples
+$ git clone https://github.com/ryu22e/python-workers-examples.git
 $ cd python-workers-examples/environment-variables
 $ # 設定方法はREADME.mdを参照
 ```
@@ -102,7 +102,7 @@ $ # 設定方法はREADME.mdを参照
 以下のサンプルコードを参照。
 
 ```{revealjs-code-block} shell
-$ git clone https://github.com/ryu22e/python-workers-examples
+$ git clone https://github.com/ryu22e/python-workers-examples.git
 $ cd python-workers-examples/simple-api
 $ # 設定方法はREADME.mdを参照
 ```
@@ -140,7 +140,7 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 公式のサンプルコードを使うと簡単に試すことができる。
 ```{revealjs-code-block} shell
 
-% git clone https://github.com/cloudflare/python-workers-examples
+% git clone https://github.com/cloudflare/python-workers-examples.git
 % cd python-workers-examples/03-fastapi
 % npx wrangler@latest dev
 ```
@@ -153,7 +153,7 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 
 ```{revealjs-code-block} shell
 
-$ git clone https://github.com/ryu22e/python-workers-examples
+$ git clone https://github.com/cloudflare/python-workers-examples.git
 $ cd python-workers-examples/built-in-sample
 $ # 設定方法はREADME.mdを参照
 ```
