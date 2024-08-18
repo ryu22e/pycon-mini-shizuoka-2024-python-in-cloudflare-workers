@@ -89,6 +89,24 @@ compatibility_date = "2024-03-29"
 * compatibility_flags: 互換性フラグ
 * compatibility_date: 互換性日付
 
+### 環境変数を参照するには（デモ）
+以下のサンプルコードを参照。
+
+```{revealjs-code-block} shell
+$ git clone https://github.com/ryu22e/python-workers-examples
+$ cd python-workers-examples/environment-variables
+$ # 設定方法はREADME.mdを参照
+```
+
+### Cloudflare D1を使ったシンプルなAPI（デモ）
+以下のサンプルコードを参照。
+
+```{revealjs-code-block} shell
+$ git clone https://github.com/ryu22e/python-workers-examples
+$ cd python-workers-examples/simple-api
+$ # 設定方法はREADME.mdを参照
+```
+
 ### built-in packagesとは
 * Cloudflare Workersで提供されているPythonパッケージ
 * requirements.txtにパッケージ名を記述することで利用できる
@@ -129,6 +147,16 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 
 ### 残念なお知らせ
 この発表時点では、built-in packagesは本番環境にデプロイできない。
+
+### FastAPIとLangChainを組み合わせたAPI（デモ）
+以下のサンプルコードを参照。
+
+```{revealjs-code-block} shell
+
+$ git clone https://github.com/ryu22e/python-workers-examples
+$ cd python-workers-examples/built-in-sample
+$ # 設定方法はREADME.mdを参照
+```
 
 ## Cloudflare WorkersでPythonが動く仕組み
 ### Q. WASMをサポートしないPythonがなぜ動くの？
