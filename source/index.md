@@ -97,7 +97,6 @@ compatibility_date = "2024-03-29"
 ```{revealjs-code-block} text
 
 fastapi
-langchain
 ```
 
 ### Q. requirements.txtって普通こう書かない？
@@ -105,7 +104,6 @@ langchain
 
 # パッケージ名の右側にバージョンを指定する
 fastapi==0.112.0
-langchain<1.0.0,>=0.1.0
 ```
 
 ### A. Cloudflare Workersでは別の方法でバージョンを指定する
