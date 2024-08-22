@@ -16,6 +16,9 @@
 * デモを交えて実際に動かしてみる
 * 中の仕組みについても解説
 
+### このトークの対象者
+* Pythonの基礎的な文法がわかる人
+
 ### このトークで得られること
 * Cloudflare Workersの概要がわかる
 * Cloudflare WorkersでPythonを使う上で必要な設定、仕様のクセがわかる
@@ -25,6 +28,11 @@
 * Cloudflare Workersとは
 * Cloudflare WorkersでPythonを使う方法
 * Cloudflare WorkersでPythonが動く仕組み
+
+### トークの元ネタ
+2024年7月に私が書いた以下の記事をベースにしています。
+
+[Cloudflare WorkersでサーバーレスPythonアプリを構築してみよう | gihyo.jp](https://gihyo.jp/article/2024/07/monthly-python-2407#gh3z4yh6_R)
 
 ## Cloudflare Workersとは
 
