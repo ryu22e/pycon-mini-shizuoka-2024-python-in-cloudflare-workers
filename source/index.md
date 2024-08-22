@@ -77,17 +77,15 @@ async def on_fetch(request, env):
 ### wrangler.tomlの中身
 ```{revealjs-code-block} toml
 
+# Workersプロジェクト名
 name = "hello-python"
+# エントリーポイント
 main = "src/entry.py"
+# 互換性フラグ（ランタイムの特定の機能を有効化）
 compatibility_flags = ["python_workers"]
+# 互換性日付（ランタイムのバージョン番号のようなもの）
 compatibility_date = "2024-03-29"
 ```
-
-### wrangler.tomlの各項目について説明
-* name: Workersプロジェクト名
-* main: エントリーポイント
-* compatibility_flags: 互換性フラグ
-* compatibility_date: 互換性日付
 
 ### 環境変数を参照するには（デモ）
 以下のサンプルコードを参照。
