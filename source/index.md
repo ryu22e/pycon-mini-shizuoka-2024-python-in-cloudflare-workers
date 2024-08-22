@@ -182,3 +182,16 @@ $ # 設定方法はREADME.mdを参照
 
 ### 以下の公式ブログも参照
 [Bringing Python to Workers using Pyodide and WebAssembly](https://blog.cloudflare.com/python-workers)
+
+## 最後に
+### まとめ
+* Cloudflare Workersはサーバーレスアプリケーションをデプロイできるプラットフォーム
+* JavaScript(TypeScript)またはWASMをサポートしているが、Pythonも使えるようになった
+* Pythonが動くのは、WASM実装のPythonインタプリタPyodideを使っているため
+
+### ご清聴ありがとうございました
+```{figure} thank-you-for-your-attention.*
+:alt: AIが考えた「Cloudflare Workersの可能性を広げるPython」
+
+AIが考えた「Cloudflare Workersの可能性を広げるPython」
+```
