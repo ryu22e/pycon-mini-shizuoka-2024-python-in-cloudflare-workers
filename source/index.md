@@ -188,7 +188,7 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 
 ```{revealjs-code-block} shell
 
-$ git clone https://github.com/cloudflare/python-workers-examples.git
+$ git clone https://github.com/ryu22e/python-workers-examples.git
 $ cd python-workers-examples/built-in-sample
 $ # 設定方法はREADME.mdを参照
 ```
