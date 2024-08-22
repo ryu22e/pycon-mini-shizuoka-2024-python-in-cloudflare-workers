@@ -36,20 +36,28 @@
 
 ## Cloudflare Workersとは
 
-### Cloudflare Workersの概要
-* サーバーレスアプリケーションをデプロイできるプラットフォーム
+### Cloudflare Workersの概要(1)
+Cloudflare Workersとは、サーバーレスアプリケーションをデプロイできるプラットフォーム。
+
+### Cloudflare Workersの概要(2)
+以下の特徴を持つ。
+
 * 世界中にあるサーバーにコードをデプロイし、クライアントは物理的に近いサーバーからレスポンスを受け取る
 * コールドスタートが排除されている
-* 類似サービスにAWS Lamnda@Edgeがある
 
 ### コールドスタートについて補足
 * しばらく実行されていない関数を実行しなければならない状況をコールドスタートという
 * Cloudflare Workersはコールドスタートが排除されているため、高速なレスポンスが期待できる
 
+### Cloudflare Workersの類似サービス
+類似サービスにAWS Lamnda@Edgeがある。
+
 ### Cloudflare WorkersがAWS Lambda@Edgeよりも優れている点
 * 無料枠がある
 * デプロイが高速（1分程度で完了）
 * JavaScriptを高速に実行するためのチューニングがされている
+
+参考: [サーバーレスコンピューティングがパフォーマンスを改善する方法とは?| Lambdaのパフォーマンス | Cloudflare](https://www.cloudflare.com/ja-jp/learning/serverless/serverless-performance/)
 
 ## Cloudflare WorkersでPythonを使う方法
 ### Cloudflare Workersを簡単に試す方法（デモ）
