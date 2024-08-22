@@ -64,6 +64,11 @@ Cloudflare Workersとは、サーバーレスアプリケーションをデプ�
 
 参考: [サーバーレスコンピューティングがパフォーマンスを改善する方法とは?| Lambdaのパフォーマンス | Cloudflare](https://www.cloudflare.com/ja-jp/learning/serverless/serverless-performance/)
 
+### Cloudflare Workersがサポートする言語
+* JavaScript（TypeScript）
+* WebAssembly（WASM）のバイナリにビルドできる言語（Rust、C、C++、Kotlin、Goなど）
+* Python←NEW!
+
 ## Cloudflare WorkersでPythonを使う方法
 ### Cloudflare Workersを簡単に試す方法（デモ）
 公式のサンプルコードを使うと簡単に試すことができる。
