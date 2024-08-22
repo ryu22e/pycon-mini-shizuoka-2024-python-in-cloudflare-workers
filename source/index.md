@@ -180,9 +180,6 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 % npx wrangler@latest dev
 ```
 
-### 残念なお知らせ
-この発表時点では、built-in packagesは本番環境にデプロイできない。
-
 ### FastAPIとLangChainを組み合わせたAPI（デモ）
 以下のサンプルコードを参照。
 
@@ -192,6 +189,9 @@ $ git clone https://github.com/ryu22e/python-workers-examples.git
 $ cd python-workers-examples/built-in-sample
 $ # 設定方法はREADME.mdを参照
 ```
+
+### 残念なお知らせ
+この発表時点では、built-in packagesは本番環境にデプロイできない。
 
 ## Cloudflare WorkersでPythonが動く仕組み
 ### Q. WASMをサポートしないPythonがなぜ動くの？
