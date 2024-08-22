@@ -37,7 +37,7 @@ PyCon mini Shizuoka 2024資料
 ### トークの元ネタ
 2024年7月に私が書いた以下の記事をベースにしています。
 
-[Cloudflare WorkersでサーバーレスPythonアプリを構築してみよう | gihyo.jp](https://gihyo.jp/article/2024/07/monthly-python-2407#gh3z4yh6_R)
+[Cloudflare WorkersでサーバーレスPythonアプリを構築してみよう | gihyo.jp](https://gihyo.jp/article/2024/07/monthly-python-2407)
 
 ## Cloudflare Workersとは
 
@@ -70,6 +70,10 @@ Cloudflare Workersとは、サーバーレスアプリケーションをデプ�
 * Python←NEW!
 
 ## Cloudflare WorkersでPythonを使う方法
+### 必要なもの
+* Node.js 16.17.0以上
+* npx
+
 ### Cloudflare Workersを簡単に試す方法（デモ）
 公式のサンプルコードを使うと簡単に試すことができる。
 ```{revealjs-code-block} shell
