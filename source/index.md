@@ -117,6 +117,13 @@ compatibility_flags = ["python_workers"]
 compatibility_date = "2024-03-29"
 ```
 
+### デプロイもやってみる（デモ）
+デプロイは以下のコマンドで行う。
+
+```{revealjs-code-block} shell
+$ npx wrangler@latest deploy
+```
+
 ### 環境変数を参照するには（デモ）
 以下のサンプルコードを参照。
 
