@@ -137,6 +137,11 @@ $ cd python-workers-examples/js-sample
 $ # 設定方法はREADME.mdを参照
 ```
 
+### その他のjsモジュールの使用例
+以下の公式サイトを参照。
+
+[Examples | Cloudflare Workers docs](https://developers.cloudflare.com/workers/examples/)
+
 ### Q. PythonなのになぜJavaScriptのAPIを使うの？
 
 この疑問に答えるには、Cloudflare WorkersでPythonが動く仕組みを知る必要があるので、一旦置いておいてください。
