@@ -41,16 +41,24 @@ PyCon mini Shizuoka 2024資料
 
 ## Cloudflare Workersとは
 
-### Cloudflare Workersの概要(1)
+### Cloudflare Workersの概要
 Cloudflare Workersとは、サーバーレスアプリケーションをデプロイできるプラットフォーム。
 
-### Cloudflare Workersの概要(2)
-以下の特徴を持つ。
+### Cloudflare Workersの特徴(1)
+世界中にあるサーバーにコードをデプロイし、クライアントは物理的に近いサーバーからレスポンスを受け取る。
 
-* 世界中にあるサーバーにコードをデプロイし、クライアントは物理的に近いサーバーからレスポンスを受け取る
-* コールドスタートが排除されている
+```{revealjs-break}
+```
 
-### コールドスタートについて補足
+```{figure} cloudflare-workers-image.*
+:alt: 世界中のエッジ環境にデプロイされる
+
+世界中のエッジ環境にデプロイされる
+```
+
+### Cloudflare Workersの特徴(2)
+コールドスタートが排除されている。
+
 * しばらく実行されていない関数を実行しなければならない状況をコールドスタートという
 * Cloudflare Workersはコールドスタートが排除されているため、高速なレスポンスが期待できる
 
