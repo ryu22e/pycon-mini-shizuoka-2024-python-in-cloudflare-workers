@@ -1,4 +1,9 @@
 # Cloudflare WorkersにPythonがやってきた
+
+Ryuji Tsutsui
+
+PyCon mini Shizuoka 2024資料
+
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 <small>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</small>
 
@@ -32,26 +37,51 @@
 ### トークの元ネタ
 2024年7月に私が書いた以下の記事をベースにしています。
 
-[Cloudflare WorkersでサーバーレスPythonアプリを構築してみよう | gihyo.jp](https://gihyo.jp/article/2024/07/monthly-python-2407#gh3z4yh6_R)
+[Cloudflare WorkersでサーバーレスPythonアプリを構築してみよう | gihyo.jp](https://gihyo.jp/article/2024/07/monthly-python-2407)
 
 ## Cloudflare Workersとは
 
 ### Cloudflare Workersの概要
-* サーバーレスアプリケーションをデプロイできるプラットフォーム
-* 世界中にあるサーバーにコードをデプロイし、クライアントは物理的に近いサーバーからレスポンスを受け取る
-* コールドスタートが排除されている
-* 類似サービスにAWS Lamnda@Edgeがある
+Cloudflare Workersとは、サーバーレスアプリケーションをデプロイできるプラットフォーム。
 
-### コールドスタートについて補足
+### Cloudflare Workersの特徴(1)
+世界中にあるサーバーにコードをデプロイし、クライアントは物理的に近いサーバーからレスポンスを受け取る。
+
+```{revealjs-break}
+```
+
+```{figure} cloudflare-workers-image.*
+:alt: 世界中のエッジ環境にデプロイされる
+
+世界中のエッジ環境にデプロイされる
+```
+
+### Cloudflare Workersの特徴(2)
+コールドスタートが排除されている。
+
 * しばらく実行されていない関数を実行しなければならない状況をコールドスタートという
 * Cloudflare Workersはコールドスタートが排除されているため、高速なレスポンスが期待できる
+
+### Cloudflare Workersの類似サービス
+類似サービスにAWS Lamnda@Edgeがある。
 
 ### Cloudflare WorkersがAWS Lambda@Edgeよりも優れている点
 * 無料枠がある
 * デプロイが高速（1分程度で完了）
 * JavaScriptを高速に実行するためのチューニングがされている
 
+参考: [サーバーレスコンピューティングがパフォーマンスを改善する方法とは?| Lambdaのパフォーマンス | Cloudflare](https://www.cloudflare.com/ja-jp/learning/serverless/serverless-performance/)
+
+### Cloudflare Workersがサポートする言語
+* JavaScript（TypeScript）
+* WebAssembly（WASM）のバイナリにビルドできる言語（Rust、C、C++、Kotlin、Goなど）
+* Python←NEW!
+
 ## Cloudflare WorkersでPythonを使う方法
+### 必要なもの
+* Node.js 16.17.0以上
+* npx
+
 ### Cloudflare Workersを簡単に試す方法（デモ）
 公式のサンプルコードを使うと簡単に試すことができる。
 ```{revealjs-code-block} shell
@@ -61,9 +91,28 @@
 % npx wrangler@latest dev
 ```
 
+### デプロイもやってみる（デモ）
+デプロイは以下のコマンドで行う。
+
+```{revealjs-code-block} shell
+$ npx wrangler@latest deploy
+```
+
 ### Wranglerとは何か
 * Cloudflare Workersの開発者ツール
 * ローカルサーバーの立ち上げ、デプロイ、環境変数の設定など、Workersプロジェクトの管理を行う
+
+### ちなみに、wrangleの意味は
+1. 争う、口論する
+2. 世話をする
+
+おそらく2の意味で使われている。
+
+### Hello worldアプリを構成している各ファイルについて解説
+以下について解説する。
+
+* src/entry.py
+* wrangler.toml
 
 ### src/entry.pyの中身
 
@@ -76,7 +125,17 @@ async def on_fetch(request, env):
 
 ### jsモジュールとは何か
 * PythonからJavaScript APIを呼び出すためのモジュール
+* 標準モジュールではなく、Cloudflare Workersの独自モジュール
 * `Headers`や`fetch`なども呼べる
+
+### jsモジュールの使用例
+[以下のサンプルコード](https://github.com/ryu22e/python-workers-examples/tree/main/js-sample)を参照。
+```{revealjs-code-block} shell
+
+$ git clone https://github.com/ryu22e/python-workers-examples.git
+$ cd python-workers-examples/js-sample
+$ # 設定方法はREADME.mdを参照
+```
 
 ### Q. PythonなのになぜJavaScriptのAPIを使うの？
 
@@ -96,7 +155,7 @@ compatibility_date = "2024-03-29"
 ```
 
 ### 環境変数を参照するには（デモ）
-以下のサンプルコードを参照。
+[以下のサンプルコード](https://github.com/ryu22e/python-workers-examples/tree/main/environment-variables)を参照。
 
 ```{revealjs-code-block} shell
 $ git clone https://github.com/ryu22e/python-workers-examples.git
@@ -105,7 +164,7 @@ $ # 設定方法はREADME.mdを参照
 ```
 
 ### Cloudflare D1を使ったシンプルなAPI（デモ）
-以下のサンプルコードを参照。
+[以下のサンプルコード](https://github.com/ryu22e/python-workers-examples/tree/main/simple-api)を参照。
 
 ```{revealjs-code-block} shell
 $ git clone https://github.com/ryu22e/python-workers-examples.git
@@ -142,8 +201,8 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 
 <https://developers.cloudflare.com/workers/languages/python/packages/#supported-packages>
 
-### Cloudflare Workersを簡単に試す方法（デモ）
-公式のサンプルコードを使うと簡単に試すことができる。
+### Cloudflare Workersを簡単に試す方法
+[公式のサンプルコード](https://github.com/cloudflare/python-workers-examples/tree/main/01-hello)を使うと簡単に試すことができる。
 ```{revealjs-code-block} shell
 
 % git clone https://github.com/cloudflare/python-workers-examples.git
@@ -151,18 +210,18 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 % npx wrangler@latest dev
 ```
 
-### 残念なお知らせ
-この発表時点では、built-in packagesは本番環境にデプロイできない。
-
 ### FastAPIとLangChainを組み合わせたAPI（デモ）
-以下のサンプルコードを参照。
+[以下のサンプルコード](https://github.com/ryu22e/python-workers-examples/tree/main/built-in-sample)を参照。
 
 ```{revealjs-code-block} shell
 
-$ git clone https://github.com/cloudflare/python-workers-examples.git
+$ git clone https://github.com/ryu22e/python-workers-examples.git
 $ cd python-workers-examples/built-in-sample
 $ # 設定方法はREADME.mdを参照
 ```
+
+### 残念なお知らせ
+この発表時点では、built-in packagesは本番環境にデプロイできない。
 
 ## Cloudflare WorkersでPythonが動く仕組み
 ### Q. WASMをサポートしないPythonがなぜ動くの？
@@ -174,14 +233,33 @@ $ # 設定方法はREADME.mdを参照
 * [Pyodide](https://pyodide.org/en/stable/)とは、CPythonのWASM実装
 * Cloudflare Workersのランタイムである[workerd](https://github.com/cloudflare/workerd)には、Pyodideが組み込まれている
 
-### workerdの実装について
-* 現状ではJavaScript(TypeScript)またはWASMのランタイムとして作られている
+### PyodideでPythonを動かせるということは……
+* Rubyのruby.wasm、PHPのphp-wasmなどを使って、他の言語も動かせるのでは？
+* （あくまで私の空想です）
+
+### Pyodideの技術的制限
+* OpenSSLなどのCライブラリに依存する標準パッケージに利用制限がある
+* 軽量化のため削除されている標準パッケージがある
+
+参考: [Standard Library provided to Python Workers](https://developers.cloudflare.com/workers/languages/python/stdlib/)
+
+### サードパーティパッケージも何でも使えるわけではない
+* 一部のパッケージはCloudflare Workersで動かすためにパッチが当てられている
+* 本番環境へのデプロイがなかなかできるようにならないのは、この制限が関係しているのかも？
+
+### jsモジュールが存在する理由
+* workerdは、現状ではJavaScript(TypeScript)またはWASMのランタイムとして作られている
 * これにPythonのを加えると、1から実装することになって大変
 * そこで、FFI（Foreign Function Interface）を提供して、PythonからJavaScriptのAPIを呼べるようにした
-* 前述したjsモジュールを通してJavaScriptのAPIを呼び出せる
+* jsモジュールは、PythonでもJavaScriptと同等の実装ができるように提供されている次善の策
 
 ### 以下の公式ブログも参照
 [Bringing Python to Workers using Pyodide and WebAssembly](https://blog.cloudflare.com/python-workers)
+
+### jsモジュールは正直使いにくいが……
+* JavaScriptとPythonの流儀の違いがあるため、違和感を感じることがある
+* 辞書型で扱えるのを期待するコードで属性アクセスが求められたりして、混乱する
+* build-in packagesがこの使いにくさを緩和してくれることを期待
 
 ## 最後に
 ### まとめ
