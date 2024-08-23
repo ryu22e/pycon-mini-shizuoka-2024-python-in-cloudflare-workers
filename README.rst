@@ -19,5 +19,5 @@ How to Build
     $ python -m venv .venv
     $ source .venv/bin/activate
     (.venv)$ pip install -r requirements.txt
-    (.venv)$ vim source/index.rst  # Replace vim with your favorite editor
+    (.venv)$ vim source/index.md  # Replace vim with your favorite editor
     (.venv)$ make revealjs  # Build to build/revealjs/
