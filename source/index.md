@@ -95,7 +95,7 @@ Cloudflare Workersとは、サーバーレスアプリケーションをデプ�
 デプロイは以下のコマンドで行う。
 
 ```{revealjs-code-block} shell
-$ npx wrangler@latest deploy
+% npx wrangler@latest deploy
 ```
 
 ### Wranglerとは何か
@@ -132,9 +132,9 @@ async def on_fetch(request, env):
 [以下のサンプルコード](https://github.com/ryu22e/python-workers-examples/tree/main/js-sample)を参照。
 ```{revealjs-code-block} shell
 
-$ git clone https://github.com/ryu22e/python-workers-examples.git
-$ cd python-workers-examples/js-sample
-$ # 設定方法はREADME.mdを参照
+% git clone https://github.com/ryu22e/python-workers-examples.git
+% cd python-workers-examples/js-sample
+% # 設定方法はREADME.mdを参照
 ```
 
 ### その他のjsモジュールの使用例
@@ -163,18 +163,18 @@ compatibility_date = "2024-03-29"
 [以下のサンプルコード](https://github.com/ryu22e/python-workers-examples/tree/main/environment-variables)を参照。
 
 ```{revealjs-code-block} shell
-$ git clone https://github.com/ryu22e/python-workers-examples.git
-$ cd python-workers-examples/environment-variables
-$ # 設定方法はREADME.mdを参照
+% git clone https://github.com/ryu22e/python-workers-examples.git
+% cd python-workers-examples/environment-variables
+% # 設定方法はREADME.mdを参照
 ```
 
 ### Cloudflare D1を使ったシンプルなAPI（デモ）
 [以下のサンプルコード](https://github.com/ryu22e/python-workers-examples/tree/main/simple-api)を参照。
 
 ```{revealjs-code-block} shell
-$ git clone https://github.com/ryu22e/python-workers-examples.git
-$ cd python-workers-examples/simple-api
-$ # 設定方法はREADME.mdを参照
+% git clone https://github.com/ryu22e/python-workers-examples.git
+% cd python-workers-examples/simple-api
+% # 設定方法はREADME.mdを参照
 ```
 
 ### built-in packagesとは
@@ -220,9 +220,9 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 
 ```{revealjs-code-block} shell
 
-$ git clone https://github.com/ryu22e/python-workers-examples.git
-$ cd python-workers-examples/built-in-sample
-$ # 設定方法はREADME.mdを参照
+% git clone https://github.com/ryu22e/python-workers-examples.git
+% cd python-workers-examples/built-in-sample
+% # 設定方法はREADME.mdを参照
 ```
 
 ### 残念なお知らせ
