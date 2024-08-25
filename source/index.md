@@ -177,6 +177,10 @@ compatibility_date = "2024-03-29"
 % # 設定方法はREADME.mdを参照
 ```
 
+### Cloudflare D1とは
+* SQLiteベースのサーバーレスデータベース
+* Cloudflareのエッジ環境にSQLiteのリードレプリカが配置されることで、高速な読み込みを実現
+
 ### built-in packagesとは
 * Cloudflare Workersで提供されているPythonパッケージ
 * requirements.txtにパッケージ名を記述することで利用できる
