@@ -219,7 +219,7 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 % npx wrangler@latest dev
 ```
 
-### FastAPIとLangChainを組み合わせたAPI（デモ）
+### build-in packagesを使ったAPI（デモ）
 [以下のサンプルコード](https://github.com/ryu22e/python-workers-examples/tree/main/built-in-sample)を参照。
 
 ```{revealjs-code-block} shell
