@@ -2,7 +2,7 @@
 
 Ryuji Tsutsui
 
-PyCon mini Shizuoka 2024資料
+PyCon mini Shizuoka 2024 continue資料
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 <small>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</small>
@@ -45,15 +45,15 @@ PyCon mini Shizuoka 2024資料
 Cloudflare Workersとは、サーバーレスアプリケーションをデプロイできるプラットフォーム。
 
 ### Cloudflare Workersの特徴(1)
-世界中にあるサーバーにコードをデプロイし、クライアントは物理的に近いサーバーからレスポンスを受け取る。
+プログラマーは世界中にあるサーバー（エッジ環境）にコードをデプロイし、ユーザーは物理的に近いサーバーからレスポンスを受け取る。
 
 ```{revealjs-break}
 ```
 
 ```{figure} cloudflare-workers-image.*
-:alt: 世界中のエッジ環境にデプロイされる
+:alt: イメージ図
 
-世界中のエッジ環境にデプロイされる
+イメージ図
 ```
 
 ### Cloudflare Workersの特徴(2)
@@ -65,9 +65,8 @@ Cloudflare Workersとは、サーバーレスアプリケーションをデプ�
 ### Cloudflare Workersの類似サービス
 類似サービスにAWS Lamnda@Edgeがある。
 
-### Cloudflare WorkersがAWS Lambda@Edgeよりも優れている点
+### Cloudflare WorkersがAWS Lambda@Edgeと異なる点
 * 無料枠がある
-* デプロイが高速（1分程度で完了）
 * JavaScriptを高速に実行するためのチューニングがされている
 
 参考: [サーバーレスコンピューティングがパフォーマンスを改善する方法とは?| Lambdaのパフォーマンス | Cloudflare](https://www.cloudflare.com/ja-jp/learning/serverless/serverless-performance/)
@@ -111,8 +110,8 @@ Cloudflare Workersとは、サーバーレスアプリケーションをデプ�
 ### Hello worldアプリを構成している各ファイルについて解説
 以下について解説する。
 
-* src/entry.py
-* wrangler.toml
+* src/entry.py: アプリケーションのソースコード
+* wrangler.toml: プロジェクトの設定ファイル
 
 ### src/entry.pyの中身
 
@@ -129,6 +128,32 @@ async def on_fetch(request, env):
 * `Headers`や`fetch`なども呼べる
 
 ### jsモジュールの使用例
+
+```{revealjs-code-block} python
+from js import Headers, Response, fetch, console, URL
+
+API_URL = "https://httpbin.org"
+
+async def on_fetch(request, env):
+    # /old にアクセスされた場合は/にリダイレクト
+    # JavaScriptだとnew URL(request.url)と書くが、Pythonにnew演算子はないのでこう書く
+    url = URL.new(request.url)
+    if url.pathname == "/old":
+        return Response.redirect(url.origin, 307)
+
+    # JSON形式でレスポンスを返すためのヘッダーを設定
+    headers = Headers.new({"content-type": "application/json; charset=utf-8"}.items())
+
+    # fetch()関数を使ってAPIサーバーにリクエストを送信
+    res = await fetch(f"{API_URL}/ip")
+
+    # レスポンスの内容をコンソールに出力
+    console.log(res)
+
+    return Response.new(res.body, headers=headers)
+```
+
+### jsモジュールのサンプルコード
 [以下のサンプルコード](https://github.com/ryu22e/python-workers-examples/tree/main/js-sample)を参照。
 ```{revealjs-code-block} shell
 
@@ -159,7 +184,52 @@ compatibility_flags = ["python_workers"]
 compatibility_date = "2024-03-29"
 ```
 
-### 環境変数を参照するには（デモ）
+### 環境変数を参照するには
+`env`引数を使う（osモジュールでは参照できない）。
+
+```{revealjs-code-block} python
+from js import Response
+
+async def on_fetch(request, env):
+    return Response.new(f"My name is {env.MY_NAME}.\nSECRET_KEY: {env.SECRET_KEY}")
+```
+
+### 環境変数を定義するには(1)
+公開してもよい値の場合、wrangler.tomlに書く。
+
+```{revealjs-code-block} toml
+name = "environment-variables"
+main = "src/entry.py"
+compatibility_flags = ["python_workers"]
+compatibility_date = "2024-03-29"
+
+# ↓ここに環境変数を書く
+[vars]
+MY_NAME = "Ryuji Tsutsui"
+```
+
+### 環境変数を定義するには(2)
+秘密の値（例: APIキー）の場合、ローカルではプロジェクト直下の.dev.varsファイルに書く。
+```{revealjs-code-block} text
+SECRET_KEY="local_value"
+```
+
+```{revealjs-break}
+```
+本番環境は`npx wrangler secret put {環境変数名}`で設定。
+
+```{revealjs-code-block} shell
+% npx wrangler secret put SECRET_KEY
+
+ ⛅️ wrangler 3.78.8
+-------------------
+
+✔ Enter a secret value: … ****************
+🌀 Creating the secret for the Worker "environment-variables"
+✨ Success! Uploaded secret SECRET_KEY
+```
+
+### 実際に環境変数を定義・参照してみる（時間があればデモ）
 [以下のサンプルコード](https://github.com/ryu22e/python-workers-examples/tree/main/environment-variables)を参照。
 
 ```{revealjs-code-block} shell
@@ -168,7 +238,47 @@ compatibility_date = "2024-03-29"
 % # 設定方法はREADME.mdを参照
 ```
 
-### Cloudflare D1を使ったシンプルなAPI（デモ）
+### Cloudflare D1を使ったシンプルなAPI（時間があればデモ）
+Cloudflare D1とは
+
+* SQLiteベースのサーバーレスデータベース
+* Cloudflareのエッジ環境にSQLiteのリードレプリカが配置されることで、高速な読み込みを実現
+
+```{revealjs-break}
+```
+データベースの作り方は以下の通り。
+
+```{revealjs-code-block} shell
+% # データベース「bookshelf」の作成
+% npx wrangler d1 create bookshelf
+% # ↑出力された内容をwrangler.tomlに追記
+% # テーブルの作成（ローカル）
+% npx wrangler d1 execute bookshelf --local --file=./schema.sql
+% # テーブルの作成（本番）
+% npx wrangler d1 execute bookshelf --remote --file=./schema.sql
+```
+
+```{revealjs-break}
+```
+DBアクセスのサンプルコードは以下の通り。
+
+```{revealjs-code-block} python
+async def on_fetch(request, env):
+    ...
+    # INSERT文
+    await (
+        env.DB.prepare("INSERT INTO books (title, description) VALUES (?, ?)")
+        .bind(title, description)
+        .run()
+    )
+    # SELECT文
+    r = await env.DB.prepare("SELECT * from books").all()
+    print(r.results)
+    ...
+```
+
+```{revealjs-break}
+```
 [以下のサンプルコード](https://github.com/ryu22e/python-workers-examples/tree/main/simple-api)を参照。
 
 ```{revealjs-code-block} shell
@@ -177,14 +287,34 @@ compatibility_date = "2024-03-29"
 % # 設定方法はREADME.mdを参照
 ```
 
-### built-in packagesとは
+
+### Built-in packagesとは
 * Cloudflare Workersで提供されているPythonパッケージ
 * requirements.txtにパッケージ名を記述することで利用できる
+* 予め用意されたパッケージのみ利用可能
 
 ### requirements.txtの記述例
 ```{revealjs-code-block} text
 
 fastapi
+```
+
+### FastAPIのコード例
+```{revealjs-code-block} python
+from fastapi import FastAPI
+
+# この関数の定義は必ず必要
+async def on_fetch(request, env):
+    import asgi
+
+    return await asgi.fetch(app, request, env)
+
+# これ以降は普通のFastAPIのコード
+app = FastAPI()
+
+@app.get("/")
+async def root(req: Request):
+    ...
 ```
 
 ### Q. requirements.txtって普通こう書かない？
@@ -206,16 +336,42 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 
 <https://developers.cloudflare.com/workers/languages/python/packages/#supported-packages>
 
-### Cloudflare Workersを簡単に試す方法
-[公式のサンプルコード](https://github.com/cloudflare/python-workers-examples/tree/main/01-hello)を使うと簡単に試すことができる。
-```{revealjs-code-block} shell
+### Q. Built-in packagesに自分が使いたいパッケージがない……
+A. Built-in packagesのmicropipを使えば、他のパッケージも使える（ただし、これにも制限がある）。
 
-% git clone https://github.com/cloudflare/python-workers-examples.git
-% cd python-workers-examples/03-fastapi
-% npx wrangler@latest dev
+### micropipのコード例(1)
+```{revealjs-code-block} python
+import micropip
+
+# FastAPIの設定は省略
+
+@app.get("/example")
+async def example(req: Request):
+    await micropip.install("beautifulsoup4==4.12.3")
+
+    # beautifulsoup4はbuilt-in packagesにはないが
+    # micropipでインストールできる
+    from bs4 import BeautifulSoup
+    ...
 ```
 
-### FastAPIとLangChainを組み合わせたAPI（デモ）
+### micropipのコード例(2)
+```{revealjs-code-block} python
+import micropip
+
+# FastAPIの設定は省略
+@app.get("/example")
+async def example(req: Request):
+    """micropip.install()が失敗する例"""
+    # pandas==2.2.2はpure Pyhon wheelがないため、
+    # micropipでインストールできずエラーになる
+    # 参考: https://pyodide.org/en/stable/usage/faq.html#why-can-t-micropip-find-a-pure-python-wheel-for-a-package
+    # （wheelとはPythonコードを1個のファイルにまとめたアーカイブ）
+    await micropip.install("pandas==2.2.2")
+    ...
+```
+
+### Built-in packagesを使ったAPI（時間があればデモ）
 [以下のサンプルコード](https://github.com/ryu22e/python-workers-examples/tree/main/built-in-sample)を参照。
 
 ```{revealjs-code-block} shell
@@ -226,7 +382,19 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 ```
 
 ### 残念なお知らせ
-この発表時点では、built-in packagesは本番環境にデプロイできない。
+この発表時点では、Built-in packagesは本番環境にデプロイできない。
+
+```{revealjs-code-block} shell
+% npx wrangler@latest deploy
+(省略)
+✘ [ERROR] A request to the Cloudflare API (/accounts/****/workers/scripts/built-in-sample) failed.
+
+  You cannot yet deploy Python Workers that depend on packages defined in requirements.txt. Support
+  for Python packages is coming soon. [code: 10021]
+
+  If you think this is a bug, please open an issue at:
+  https://github.com/cloudflare/workers-sdk/issues/new/choose
+```
 
 ## Cloudflare WorkersでPythonが動く仕組み
 ### Q. WASMをサポートしないPythonがなぜ動くの？
@@ -249,12 +417,12 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 参考: [Standard Library provided to Python Workers](https://developers.cloudflare.com/workers/languages/python/stdlib/)
 
 ### サードパーティパッケージも何でも使えるわけではない
-* 一部のパッケージはCloudflare Workersで動かすためにパッチが当てられている
+* 一部のBuilt-in packagesはCloudflare Workersで動かすためにパッチが当てられている
 * 本番環境へのデプロイがなかなかできるようにならないのは、この制限が関係しているのかも？
 
 ### jsモジュールが存在する理由
 * workerdは、現状ではJavaScript(TypeScript)またはWASMのランタイムとして作られている
-* これにPythonのを加えると、1から実装することになって大変
+* これにPythonを加えると、1から実装することになって大変
 * そこで、FFI（Foreign Function Interface）を提供して、PythonからJavaScriptのAPIを呼べるようにした
 * jsモジュールは、PythonでもJavaScriptと同等の実装ができるように提供されている次善の策
 
@@ -263,8 +431,8 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 
 ### jsモジュールは正直使いにくいが……
 * JavaScriptとPythonの流儀の違いがあるため、違和感を感じることがある
-* 辞書型で扱えるのを期待するコードで属性アクセスが求められたりして、混乱する
-* build-in packagesがこの使いにくさを緩和してくれることを期待
+* `request.json()`で辞書型で扱えるのを期待していたら属性アクセスが求められたりして、混乱する
+* Built-in packagesがこの使いにくさを緩和してくれることを期待
 
 ## 最後に
 ### まとめ
@@ -274,7 +442,7 @@ wrangler.tomlの以下項目によってパッケージのバージョンが決�
 
 ### ご清聴ありがとうございました
 ```{figure} thank-you-for-your-attention.*
-:alt: AIが考えた「Cloudflare Workersの可能性を広げるPython」
+:alt: AIが考えた「Cloudflare Workers in Python」
 
-AIが考えた「Cloudflare Workersの可能性を広げるPython」
+AIが考えた「Cloudflare Workers in Python」
 ```
