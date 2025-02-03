@@ -104,12 +104,25 @@ Cloudflare Workersとは、サーバーレスアプリケーションをデプ�
 % npx wrangler@latest dev
 ```
 
+```{revealjs-break}
+```
+
+```{video} _static/mp4/run-dev-server.mp4
+```
+
+
 ### デプロイもやってみる（デモ）
 
 デプロイは以下のコマンドで行う。
 
 ```{revealjs-code-block} shell
 % npx wrangler@latest deploy
+```
+
+```{revealjs-break}
+```
+
+```{video} _static/mp4/deploy.mp4
 ```
 
 ### Wranglerとは何か
