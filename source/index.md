@@ -277,6 +277,12 @@ SECRET_KEY="local_value"
 % # 設定方法はREADME.mdを参照
 ```
 
+```{revealjs-break}
+```
+
+```{video} _static/mp4/environment-variables.mp4
+```
+
 ### Cloudflare D1を使ったシンプルなAPI（時間があればデモ）
 
 Cloudflare D1とは
