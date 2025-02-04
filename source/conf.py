@@ -38,6 +38,7 @@ extensions = [
     "sphinxext.opengraph",
     "sphinx_budoux",
     "myst_parser",
+    "sphinxcontrib.video",
 ]
 budoux_target_tags = ["h1", "h2", "h3", "p"]
 
