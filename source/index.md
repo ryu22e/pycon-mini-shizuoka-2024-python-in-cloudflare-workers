@@ -185,6 +185,11 @@ async def on_fetch(request, env):
     return Response.new(res.body, headers=headers)
 ```
 
+### `console.log`の出力例
+
+```{video} _static/mp4/js-sample.mp4
+```
+
 ### jsモジュールのサンプルコード
 
 [以下のサンプルコード](https://github.com/ryu22e/python-workers-examples/tree/main/js-sample)を参照。
