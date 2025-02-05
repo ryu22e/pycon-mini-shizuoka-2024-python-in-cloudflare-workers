@@ -341,6 +341,8 @@ async def on_fetch(request, env):
 ```{revealjs-break}
 ```
 
+（たぶん時間がないのでカット）
+
 ```{video} _static/mp4/simple-api.mp4
 ```
 
@@ -437,6 +439,8 @@ async def example(req: Request):
 ```
 
 ### Built-in packagesを使ったAPI（時間があればデモ）
+
+（たぶん時間がないのでカット）
 
 [以下のサンプルコード](https://github.com/ryu22e/python-workers-examples/tree/main/built-in-sample)を参照。
 
