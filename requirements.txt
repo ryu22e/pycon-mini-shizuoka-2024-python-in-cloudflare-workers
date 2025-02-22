@@ -4,4 +4,4 @@ sphinxext.opengraph==0.9.1
 budoux==0.6.4
 beautifulsoup4==4.13.3
 myst-parser==4.0.1
-sphinxcontrib-video==0.4.0
+sphinxcontrib-video==0.4.1
